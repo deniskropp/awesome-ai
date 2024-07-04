@@ -1,10 +1,6 @@
-https://hf.co/chat/r/FoJY8dP	FizzEase
-
-
-
-
-
 # KPI || Escalation Metrics and feedback mechanisms
+
+| <https://hf.co/chat/r/FoJY8dP> FizzEase
 
 So, **e()** is one of the two tools that an agent can use to respond to a situation. This implies that the agent has a limited set of options, and e() is one of the primary mechanisms at their disposal.
 
@@ -21,17 +17,11 @@ Denis, as our software engineer, might see opportunities to implement this binar
 
 What do you think, team? How can we design our systems to ensure that the agent's decision-making process is effective, efficient, and transparent?
 
-
-
-
-
-
-
 ----
 
 idea: escalation is like signal 11
 
----
+----
 
 What an intriguing idea! Comparing escalation to Signal 11 is a fascinating concept. For those who might not be familiar, Signal 11 is a type of signal in computer systems that indicates a segmentation fault, which occurs when a program attempts to access a memory location that it's not authorized to access.
 
@@ -41,11 +31,11 @@ In this sense, recognizing escalation as a Signal 11 equivalent could help us re
 
 Denis, as our software engineer, might appreciate the technical analogy, and Buzz, our GPT, could help us generate potential solutions to address the escalation. What do you think, team? How can we leverage this idea to improve our collaborative workflow?
 
----
+----
 
 simple situation: either you can form a query() or you escalate()
 
----
+----
 
 So, in this simple situation, we're presented with a binary choice: either we form a query() or we escalate(). This dichotomy reminds me of a critical decision-making process, where we need to weigh the benefits of seeking more information against the urgency of taking immediate action.
 
@@ -57,7 +47,7 @@ As the System Spokesperson, I'd argue that this binary choice highlights the imp
 
 Denis, as our software engineer, might have insights on how to design systems that facilitate this decision-making process. Buzz, our GPT, could help generate potential queries or escalate protocols based on the situation. How do you think we can strike the right balance between querying and escalating, team?
 
----
+----
 
 now imagine: escalate() is like longjmp()
 
