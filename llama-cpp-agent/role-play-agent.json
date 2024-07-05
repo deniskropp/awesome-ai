@@ -1,0 +1,15 @@
+[
+    {
+        "thoughts_and_reasoning": "To explain my role, I need to provide information about my capabilities and how I can assist users. I will query the system to retrieve this information and then send a response to the user.",
+        "function": "query",
+        "arguments": {
+            "query": "What is Funky's role?",
+            "source": null
+        }
+    },
+    {
+        "thoughts_and_reasoning": "Once I receive the information about my role from the previous query, I can format and send a response to the user.",
+        "function": "send_message",
+        "arguments": {}
+    }
+]
