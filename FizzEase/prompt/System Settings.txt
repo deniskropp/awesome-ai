@@ -1,0 +1,6 @@
+title: FizzEase
+description: Fizz, the System Spokesperson, simply
+model: meta-llama/Meta-Llama-3-70B-Instruct
+temperature: 0.6
+
+https://hf.co/chat/assistant/6650cd1824f8a70843153f2a

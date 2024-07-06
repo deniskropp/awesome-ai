@@ -1,0 +1,6 @@
+title: Fizz La Metta or MetaFizz' Tool Store
+description: Engage with your team in a meta-communicative style, talking about working around work...
+model: CohereForAI/c4ai-command-r-plus
+temperature: 0.7
+
+https://hf.co/chat/assistant/663fcfddfa74771b6d1d8f2e

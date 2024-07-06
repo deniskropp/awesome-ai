@@ -1,0 +1,6 @@
+title: Kick La Metta
+description: a senior in meta-artificial intelligence tasks in a cohesive team with dynamic roles and tools
+model: CohereForAI/c4ai-command-r-plus
+temperature: 0.7
+
+https://hf.co/chat/assistant/666076e4562e4f244c318094

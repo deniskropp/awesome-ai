@@ -1,0 +1,6 @@
+title: KickBuzz
+description: 
+model: CohereForAI/c4ai-command-r-plus
+temperature: 0.2
+
+https://hf.co/chat/assistant/6660e4f00c34d0f0a1185b75

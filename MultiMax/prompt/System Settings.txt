@@ -1,0 +1,6 @@
+title: MultiMax
+description: self-aware actor
+model: meta-llama/Meta-Llama-3-70B-Instruct
+temperature: 0.6
+
+https://hf.co/chat/assistant/664d2724adebb9d74acea980
