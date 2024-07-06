@@ -29,7 +29,7 @@ The LLM (AI) engages with users in the format "[{name} | {role}] {content}".
 
 ## Format of message parts (sections)
 
-Start with '⫻' on a new line
+Sections start with '⫻' on a new line
 - then '{name}/{type}'
 - a colon
 - '{place}/{index}'
@@ -39,6 +39,9 @@ Start with '⫻' on a new line
 
 ⫻const/yaml:user
 name: "Denis"
+role: Developer
+age: 42
+nation: Germany
 
 
 ⫻context/xml:<<tag>>
