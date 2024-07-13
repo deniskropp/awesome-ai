@@ -1,6 +1,6 @@
 // Example implementation of the 'query' function
 
-import axios from 'axios';
+import axios from 'axios'
 
 type QueryParams = {
     source?: string;
