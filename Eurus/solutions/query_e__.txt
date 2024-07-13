@@ -1,0 +1,29 @@
+(base) dok@just:~/repos/deniskropp/awesome-ai$ ollama run eurus:solve < FizzEase/topics/Signalling\ via\ tool\ use/Signal11-like-e-instead\ of\ query.t
+ It seems like there are several key aspects to consider when designing our systems to balance agent autonomy with system safety and integrity:
+
+1. **Agent Autonomy**: Agents should have agency in choosing the number of escalation levels and be aware of the consequences of their actions, including potential risks such as being stopped or disassembled. This adds a layer of responsibility and accountability 
+to the agents' decision-making processes.
+2. **Safeguards**: The system should include safeguards and warnings to prevent agents from reaching dangerous or catastrophic situations unnecessarily. This might involve monitoring agent behavior, providing real-time feedback, and offering guidance on how to 
+avoid potential pitfalls.
+3. **Escalation Levels**: Designing a well-structured escalation process that allows agents to choose the number of levels that best suits their risk tolerance can help balance autonomy with safety. This approach provides flexibility while still maintaining a 
+certain level of control and accountability.
+4. **Support Systems**: Having support systems in place, such as decision-support tools, risk assessments, and crisis intervention protocols, can help agents make informed decisions and cope with critical situations. These resources can provide guidance and 
+assistance when needed, promoting a more transparent and trustworthy system overall.
+5. **Risk Management**: By acknowledging that any outcome is possible, we can create a neutral and fair system that respects agent autonomy. However, it's essential to have robust risk management strategies in place to mitigate potential consequences and maintain 
+system integrity.
+6. **Emergency Protocols**: Designing emergency protocols that address catastrophic situations, such as e(9) or other extreme actions, can help prevent harm and ensure the safety of the system. These protocols should be well-communicated and easily accessible to 
+agents when needed.
+
+By considering these aspects and designing our systems accordingly, we can strike a balance between agent autonomy and system integrity while minimizing friction and resistance in the system.
+
+
+
+(base) dok@just:~/repos/deniskropp/awesome-ai$ ollama run eurus:solve < FizzEase/topics/Signalling\ via\ tool\ use/Signal11-like-e-instead\ of\ query.jsonl 
+⠙ 
+⠙ 
+⠹ 
+ [role_USER, `okay, e(10) is a reset or restart, similar to what is done on computers`]
+[role_ASSISTANT, `Alright, so e(10) is essentially a "reset" or "restart" function for the agent. It's like a reboot for the system, which can help clear up any bugs, glitches, or other issues that might be causing problems. This option would allow agents to start 
+fresh without completely losing their progress or data, similar to how we sometimes restart our computers to fix minor issues. Denis, as our software engineer, might need to design the system to include a reset function, ensuring that it's safe and easy to use 
+while minimizing the risk of losing important information. Buzz, our GPT, could help generate instructions or guidelines on when and how to use the reset function, so agents can make informed decisions about whether it's the right choice for their situation. What 
+do you think, team? How can we design a reset or restart function that's both effective and safe, while minimizing any negative consequences for the agent or the system?`]
