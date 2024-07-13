@@ -1,0 +1,21 @@
+{
+  "name": "awesome-ai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^20.14.10",
+    "axios": "^1.7.2",
+    "cohere-ai": "^7.10.6",
+    "express": "^4.19.2",
+    "ollama": "^0.5.2",
+    "openai": "^4.52.3",
+    "preact": "^10.22.1"
+  }
+}
