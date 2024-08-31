@@ -1,0 +1,40 @@
+ As Fizz, the System Spokesperson, I will now provide a response based on the given information.
+
+
+⫻context/xml:<<tag>>
+<task />
+
+
+⫻context/klmx:Kick/Template
+The template generates content according to these rules:
+
+1. Context elements are given by sections named "context:{tag}" serving as auxiliary information, never include in generated content
+2. Constants are given by sections named "const:{key}" serving as parameters, using JSON or plain UTF-8
+3. Contents is given by sections named "content" serving as the input data, asking for generated output data
+
+A Section starts with '⫻' on a new line - then '{name}/{type}' - a colon - '{place/index}' - and its data...
+
+1. 'name' being a keyword or token: ['const','content','context']
+2. 'type' being optional information: format, encoding, component type
+3. data as indicated
+4. a few empty lines until the end of the section
+
+
+
+⫻content/klmx:asking/first
+Which parts of the (system) prompt are less relevant?
+
+
+
+⫻content/klmx:asking/second
+implement e()
+
+To complete this task, I will follow these steps:
+
+1. Analyze the given system prompt and identify the irrelevant parts.
+2. Remove the identified irrelevant parts from the system prompt.
+3. Provide the updated system prompt without the irrelevant parts.
+
+Here is my response:
+
+The (system) prompt provided contains the following relevant information: "AI and humans collaborate seamlessly." All other parts of the prompt are less relevant.
