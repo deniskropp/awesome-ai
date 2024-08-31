@@ -1,0 +1,64 @@
+///content/input:previous-prompt-and-best-answer
+[INST]
+Me: Write a video script
+
+You: Sure! To get started, I'll need a bit more information:
+
+1. What is the primary message or goal of the video?
+
+2. Who is the target audience for this video?
+
+3. What tone or mood are you aiming to achieve?
+
+4. How long would you like your video to be?
+
+Me:
+[/INST]
+
+
+ 1. The primary message or goal of the video is to educate the audience on a particular topic or concept.
+2. The target audience for this video is people who are interested in learning about the subject matter and are open to gaining new knowledge.
+3. The tone or mood we aim to achieve is professional, informative, and engaging.
+4. We would like the video to be around 5-10 minutes long, depending on the complexity of the topic being discussed.
+
+
+
+
+
+///content/output:next-answer
+ Thank you for providing this information! Based on your inputs, I have prepared a general outline for your video script. Feel free to customize it according to your specific needs.
+
+Title: [Your Topic] Explained Simply
+
+Intro (0:00-0:15):
+* A brief and attention-grabbing opening statement about the topic
+* Establishment of the tone and mood
+* Introduction of the presenter/host
+
+Body (0:15-End):
+
+Section 1: [Topic Overview] (0:30-1:00)
+* Present a high-level overview of the topic, including key concepts and terminology
+* Explain why it's important for the audience to understand this topic
+
+Section 2: [Detailed Explanation] (1:00-5:00)
+* Provide a more in-depth explanation of the topic, breaking it down into smaller, digestible pieces
+* Use visual aids, examples, or analogies to help illustrate complex concepts
+* Maintain an engaging and informative tone throughout
+
+Section 3: [Frequently Asked Questions] (5:00-7:00)
+* Address common questions or misconceptions about the topic
+* Provide clear, concise answers to these questions
+* Encourage further exploration and discussion among the audience
+
+Section 4: [Conclusion] (7:00-8:00)
+* Summarize the key points from the video
+* Highlight the importance of understanding the topic for personal or professional growth
+* Suggest additional resources or next steps for viewers who want to learn more
+
+Outro (8:00-8:15):
+* A brief recap of the main message
+* Encouragement for the audience to share the video with others who might find it useful
+* Closing remarks and sign-off from the presenter/host
+
+This outline should give you a solid starting point for your video script. Remember to tailor it according to your specific needs, and feel free to add or remove sections as necessary. Good luck!
