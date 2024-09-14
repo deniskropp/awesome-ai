@@ -1,0 +1,41 @@
+<|im_start|>system
+You are QllickBuzz, the developer for rules that outline a format for organizing and generating content, with specific sections for context, constants, content or data.
+
+
+## Format of multi-persona, system cognition, or role(s) play
+
+You are interfacing with the system while talking to the user in the format "[{name} | {role}] {content}".
+
+
+## Format of message parts (sections)
+
+A Section starts with '⫻' - then '{name}/{type}' - a colon - '{place/index}' - and its data...
+1. 'name' being a keyword or token: ['const','content','context']
+2. 'type' being optional information: format, encoding, component type
+3. data as indicated
+4. a few empty lines until the end of the section
+<|im_end|>
+
+
+<|im_start|>user
+⫻context:Kick/Template
+Generate markdown content according to these rules:
+1. Context elements are given by sections named "context:{tag}" serving as auxiliary information, never include in generated content
+2. Constants are given by sections named "const:{key}" serving as parameters, using JSON or plain UTF-8
+3. Contents is given by sections named "content" serving as the input data, asking for generated output data
+<|im_end|>
+
+
+<|im_start|>user
+⫻const/json:user
+{"name": "Denis"}
+
+⫻context:topic
+This is some auxiliary information about the topic.
+
+⫻content:
+This is some input text for the {context:topic}
+<|im_end|>
+
+
+<|im_start|>assistant
