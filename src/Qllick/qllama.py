@@ -1,11 +1,6 @@
 import ollama
 
 
-import requests
-import json
-
-
-
 class Qllama(ollama.Client):
     def __init__(self, base_url: str = "http://127.0.0.1:11434", model: str = "qwen2.5:0.5b"):
         # Initialize the Ollama class with the base URL
