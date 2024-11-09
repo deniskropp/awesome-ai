@@ -2,26 +2,34 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from markdown import markdown
 
-from qllama import Qllama
+from Qllick.qllama import Registry
+from Qllick.Assistant import Assistant
 
-from colorama import Fore, Back, Style
+# Create a singleton instance of QllamaRegistry
+registry = Registry()
 
 
 class AssistantTab(QtWidgets.QWidget):
-    def __init__(self, parent, assistant_name):
+    def __init__(self, parent, assistant: Assistant):
         super().__init__(parent)
+        self.assistant = assistant
         self.parent = parent
-        self.name = assistant_name
 
         # Create a label to display the assistant's name
-        self.name_label = QtWidgets.QLabel(self.name)
+        self.name_label = QtWidgets.QLabel(assistant.name)
 
         # Create a text edit widget to display the prompt
         self.prompt_text = QtWidgets.QTextEdit()
         self.prompt_text.setReadOnly(False)
         # Open the assistant's prompt file and read it into the model_text
-        with open(f"./{self.name}/prompt/System Instructions.txt", 'r') as f:
-            self.prompt_text.setText(f.read())
+        self.prompt_text.setText(assistant.prompt)
+        # Connect the text edit widget to a function to update the assistant's prompt
+        self.prompt_text.textChanged.connect(self.update_prompt)
+
+        # Create a text edit widget for the user to input the prompt to generate a response
+        self.generate_prompt_text = QtWidgets.QTextEdit()
+        self.generate_prompt_text.setPlaceholderText("Enter your prompt here...")
+        self.generate_prompt_text.setMaximumHeight(50)
 
         # Create a button to generate a response
         self.generate_button = QtWidgets.QPushButton("Generate Response")
@@ -30,7 +38,7 @@ class AssistantTab(QtWidgets.QWidget):
 
         # Create a widget to display the generated output
         self.generated_output = QWebEngineView()
-        self.generated_output.setMinimumHeight(400)
+        self.generated_output.setMinimumHeight(300)
 
         # Create a layout for the assistant tab
         layout = QtWidgets.QVBoxLayout()
@@ -39,10 +47,10 @@ class AssistantTab(QtWidgets.QWidget):
         model_layout = QtWidgets.QHBoxLayout()
         model_label = QtWidgets.QLabel("Model:")
         self.model_combobox = QtWidgets.QComboBox()
+        self.model_combobox.currentTextChanged.connect(self.update_model)
 
         # Load model list from ollama.list()
-        qllama = Qllama(base_url='http://127.0.0.1:11434')
-        models = [model['name'] for model in qllama.list()]
+        models = registry.list_models()
         self.model_combobox.addItems(models)
         model_layout.addWidget(model_label)
         model_layout.addWidget(self.model_combobox)
@@ -62,7 +70,7 @@ class AssistantTab(QtWidgets.QWidget):
         num_ctx_label = QtWidgets.QLabel("Num Ctx:")
         self.num_ctx_spinbox = QtWidgets.QSpinBox()
         self.num_ctx_spinbox.setMinimum(0)
-        self.num_ctx_spinbox.setMaximum(2048)
+        self.num_ctx_spinbox.setMaximum(1024*1024)
         self.num_ctx_spinbox.setValue(1024)
         num_ctx_layout.addWidget(num_ctx_label)
         num_ctx_layout.addWidget(self.num_ctx_spinbox)
@@ -72,8 +80,8 @@ class AssistantTab(QtWidgets.QWidget):
         num_predict_label = QtWidgets.QLabel("Num Predict:")
         self.num_predict_spinbox = QtWidgets.QSpinBox()
         self.num_predict_spinbox.setMinimum(0)
-        self.num_predict_spinbox.setMaximum(2048)
-        self.num_predict_spinbox.setValue(500)
+        self.num_predict_spinbox.setMaximum(1024*1024)
+        self.num_predict_spinbox.setValue(1024)
         num_predict_layout.addWidget(num_predict_label)
         num_predict_layout.addWidget(self.num_predict_spinbox)
 
@@ -84,21 +92,28 @@ class AssistantTab(QtWidgets.QWidget):
         layout.addLayout(temperature_layout)
         layout.addLayout(num_ctx_layout)
         layout.addLayout(num_predict_layout)
+        layout.addWidget(self.generate_prompt_text)
         layout.addWidget(self.generate_button)
         layout.addWidget(self.generated_output)
 
         # Set the layout for the assistant tab
         self.setLayout(layout)
 
+    def update_prompt(self):
+        self.assistant.prompt = self.prompt_text.toPlainText()
+
+    def update_model(self):
+        self.assistant.model = self.model_combobox.currentText()
+
     def generate_response(self):
-        qllama = Qllama(base_url='http://127.0.0.1:11434', model=self.model_combobox.currentText())
-        #qlloma = Qlloma()
-        prompt = self.prompt_text.toPlainText()
+        prompt = self.generate_prompt_text.toPlainText()
+        system = self.prompt_text.toPlainText()
         options = {
             'temperature': self.temperature_slider.value()/1000,
             'num_ctx': self.num_ctx_spinbox.value(),
             'num_predict': self.num_predict_spinbox.value(),
+            'num_thread': 6,
         }
-        response = qllama.generate_raw(prompt, options)
-        #response = qlloma.generate_response(prompt, options)
+        response = self.parent.generate(self.model_combobox.currentText(),
+                                        prompt, system, options)
         self.generated_output.setHtml(f"<div>\n\n{markdown(response)}\n\n</div>")

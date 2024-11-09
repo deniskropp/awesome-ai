@@ -37,29 +37,22 @@ class StableDiffusionGenerator:
         print(f"Using {self.device} device")
 
         if (os.path.isfile(model_id)):
-            self.pipe = StableDiffusionPipeline.from_single_file(model_id, torch_dtype=torch.float16)
+            self.pipe = StableDiffusionPipeline.from_single_file(model_id)#, torch_dtype=torch.float16)
         else:
-            self.pipe = StableDiffusionPipeline.from_pretrained(model_id, torch_dtype=torch.float16)
+            self.pipe = StableDiffusionPipeline.from_pretrained(model_id)#, torch_dtype=torch.float16)
         self.pipe = self.pipe.to(self.device)
-
+        
         self.model = model_id
-        self.loras = []
         self.adapter_names = []
-        self.adapter_weights = []
+        self.loras = []
 
-    def load_lora_weights(self, lora, scale=1.0):
-        #assert(self.generator is None)
-        print('Loading', lora, scale)
-        self.loras.append(lora)
-        self.pipe.load_lora_weights(".", weight_name=lora)
-        for l in self.pipe.get_active_adapters():
-            self.adapter_names.append(l)
-            self.adapter_weights.append(scale)
+    def set_initial_image(self, image):
+        self.init_image = image
 
     def fuse(self, lora_scale=0.5):
         #assert(self.generator is None)
-        print('fusing', self.adapter_names, self.adapter_weights)
-        if (len(self.adapter_names) != 0):
+        #print('fusing', self.adapter_names, self.adapter_weights)
+        if self.adapter_names:
             self.pipe.set_adapters(self.adapter_names, adapter_weights=self.adapter_weights)
             self.pipe.fuse_lora(lora_scale=lora_scale, adapter_names=self.adapter_names)
             self.pipe.unload_lora_weights()
@@ -69,6 +62,7 @@ class StableDiffusionGenerator:
         #assert(self.generator is not None)
         return self.pipe(
             prompt,
+            image=self.init_image,
             width=width,
             height=height,
             num_inference_steps=num_inference_steps,
@@ -161,6 +155,9 @@ def main():
     parser.add_argument('--num_inference_steps', type=int, default=None, help='Number of denoising steps')
     parser.add_argument('--guidance_scale', type=float, default=None, help='Guidance scale for classifier-free guidance')
     parser.add_argument('--yaml', type=str, default=None, help='Load parameters from YAML (args or sd_)')
+    parser.add_argument('--image', type=str, default=None, help='Path to the input image')
+
+    # Parse the command-line arguments
     yaml_args = parser.parse_args()
 
     print('\nyaml_args', yaml_args)
@@ -238,6 +235,16 @@ def main():
 
     # Initialize the StableDiffusionGenerator with the model path
     generator = StableDiffusionGenerator(model_path)
+
+    # If an image is provided, load it and use it as the initial image for Stable Diffusion
+    if yaml_args.image:
+        init_image = Image.open(yaml_args.image)
+        #if init_image is None:
+        #    print(f"Error: Failed to open image file {yaml_args.image}")
+        #else:
+        #    init_image = init_image.resize((yaml_args.width, yaml_args.height))
+        # Set the initial image for Stable Diffusion
+        generator.set_initial_image(init_image)
 
     # Load LoRA weights if provided
     for lora in args.lora:

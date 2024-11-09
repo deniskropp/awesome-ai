@@ -27,14 +27,8 @@ Generate markdown content according to these rules:
 
 
 <|im_start|>user
-⫻const/json:user
-{"name": "Denis"}
-
-⫻context:topic
-This is some auxiliary information about the topic.
-
 ⫻content:
-This is some input text for the {context:topic}
+This is some input text.
 <|im_end|>
 
 
