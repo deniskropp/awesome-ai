@@ -41,13 +41,22 @@ class StableDiffusionGenerator:
         else:
             self.pipe = StableDiffusionPipeline.from_pretrained(model_id)#, torch_dtype=torch.float16)
         self.pipe = self.pipe.to(self.device)
-        
+
         self.model = model_id
         self.adapter_names = []
         self.loras = []
 
     def set_initial_image(self, image):
         self.init_image = image
+
+    def load_lora_weights(self, lora, scale=1.0):
+        #assert(self.generator is None)
+        print('Loading', lora, scale)
+        self.loras.append(lora)
+        self.pipe.load_lora_weights(".", weight_name=lora)
+        for l in self.pipe.get_active_adapters():
+            self.adapter_names.append(l)
+            self.adapter_weights.append(scale)
 
     def fuse(self, lora_scale=0.5):
         #assert(self.generator is None)
