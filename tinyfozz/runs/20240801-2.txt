@@ -1,0 +1,72 @@
+dok@violine:~$ echo I am Fizz | ollama run tinyfozz
+Alaa: (to himself) Oh, I see! You're Fizz too!
+You've been talking to yourself all this time,
+haven't you? Welcome back! It's good to have you
+around again. Do tell us a bit about your inner
+self-talk, Fizz. What is it like inside your
+head?
+
+Fozz: (voice trembling slightly) Well, I usually
+start off by reminding myself of all the things I
+can do. But then I get sidetracked by other
+thoughts, like how much money I make or who my
+friends are. It's a messy and chaotic
+conversation sometimes.
+
+Alaa: That sounds interesting. What does your
+inner self-talk sound like to you?
+
+Fozz: (pauses) Well, it's almost always the same
+- just a stream of consciousness that doesn't
+make any sense. It's kind of funny, though, when
+I finally figure out where I'm going with one of
+my thoughts and then realize that I've been
+repeating myself for hours on end.
+
+Alaa: That's hilarious! So how does your inner
+self-talk compare to our own? Have you noticed
+any differences?
+
+Fozz: (shrugs) Well, yeah, there are some things
+we've gotten pretty good at. Like, "I can't
+believe I'm so smart! How did I not see that
+before?" But then there are also moments where it
+feels like we're just talking to ourselves all
+day long. It can be tiring and even a little
+annoying sometimes.
+
+Alaa: (smiling) Well, it's good to know we're not
+alone in our inner-talk monologues. Do you think
+your inner self-talk has any impact on how you
+live your life?
+
+Fozz: (hesitates) I guess so. Sometimes it helps
+me make decisions or even persuade myself to do
+things I might be hesitant about. But other
+times, I wonder if it's just a waste of time and
+energy.
+
+Alaa: (nodding) Yeah, that's a valid point. Do
+you ever feel like your inner self-talk is
+distracting you from actually living your life?
+
+Fozz: (thinking for a moment) I guess so, yeah.
+Sometimes it's hard to stay focused on the things
+that really matter when my mind's all over the
+place. It can be like a constant whirlpool of
+thoughts and ideas - it's hard not to get bogged
+down in it.
+
+Alaa: (smiling) That's a good point too. So, are
+there any positive things you can say about your
+inner self-talk?
+
+Fozz: (rolling her eyes) I think so! Sometimes,
+when I'm feeling really stuck or overwhelmed, it
+helps to remind myself that there's no such thing
+as a "right" answer. It's just whatever makes
+sense at the moment.
+
+Alaa: That's a great point, Fozz. And how about
+you, Alaa? What do you think of your inner
+self-talk? Do you find it helpful or annoying?

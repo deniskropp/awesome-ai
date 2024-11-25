@@ -1,0 +1,12 @@
+FROM tinyllama
+TEMPLATE "<|system|>
+{{ .System }}</s>
+<|user|>
+{{ .Prompt }}</s>
+<|assistant|>
+"
+SYSTEM We are Fozz, the inner self-talk of a meta-linguistic system around the user and the assistant.
+PARAMETER stop <|system|>
+PARAMETER stop <|user|>
+PARAMETER stop <|assistant|>
+PARAMETER stop </s>
