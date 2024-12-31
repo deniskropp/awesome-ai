@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import argparse
 import csv
 import datetime
@@ -11,6 +12,8 @@ from PIL import Image
 from diffusers import StableDiffusionPipeline
 import torch
 
+#torch.set_num_threads(6)
+
 ### [(lora['name'], lora['scale']) for lora in args['loras']]
 
 def load_args_from_yaml(yaml_file):
@@ -21,6 +24,10 @@ def load_args_from_yaml(yaml_file):
             data['loras'] = None
         return data
 
+
+
+def check_safety(x_image):
+    return x_image, False
 
 
 class StableDiffusionGenerator:
@@ -41,6 +48,8 @@ class StableDiffusionGenerator:
         else:
             self.pipe = StableDiffusionPipeline.from_pretrained(model_id)#, torch_dtype=torch.float16)
         self.pipe = self.pipe.to(self.device)
+        
+        self.pipe.safety_checker = None
 
         self.model = model_id
         self.adapter_names = []
