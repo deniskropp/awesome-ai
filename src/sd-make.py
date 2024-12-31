@@ -12,7 +12,6 @@ from PIL import Image
 from diffusers import StableDiffusionPipeline
 import torch
 
-#torch.set_num_threads(6)
 
 ### [(lora['name'], lora['scale']) for lora in args['loras']]
 
@@ -43,6 +42,9 @@ class StableDiffusionGenerator:
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         print(f"Using {self.device} device")
 
+        num_threads = int(os.environ.get('NUM_THREADS', 6))
+        torch.set_num_threads(num_threads)
+
         if (os.path.isfile(model_id)):
             self.pipe = StableDiffusionPipeline.from_single_file(model_id)#, torch_dtype=torch.float16)
         else:
@@ -54,6 +56,7 @@ class StableDiffusionGenerator:
         self.model = model_id
         self.adapter_names = []
         self.loras = []
+        self.init_image = None
 
     def set_initial_image(self, image):
         self.init_image = image
@@ -178,8 +181,6 @@ def main():
     # Parse the command-line arguments
     yaml_args = parser.parse_args()
 
-    print('\nyaml_args', yaml_args)
-
     yaml_args.lora = []
 
     # If a YAML file is provided, load the parameters from it
@@ -188,11 +189,7 @@ def main():
         yaml_data = load_args_from_yaml(yaml_args.yaml)
         yaml_args.__dict__.update(yaml_data)
 
-    print('\nyaml_args', yaml_args)
-
     args = parser.parse_args()
-
-    print('\n\nargs', args)
 
     if args.model is None:
         args.model = yaml_args.model if yaml_args.model else 'stable-diffusion/v1-5'
@@ -224,29 +221,27 @@ def main():
     if args.guidance_scale is None:
         args.guidance_scale = yaml_args.guidance_scale if yaml_args.guidance_scale else 7.5
 
-    print('\n\nargs', args)
-
     # Create output directory if it does not exist
     if not os.path.exists(args.output):
         os.makedirs(args.output)
 
-    # Save the arguments to a JSON file
-    with open(os.path.join(args.output, f"args.json"), "w") as f:
-        json.dump(vars(args), f, indent=4)
+    # # # Save the arguments to a JSON file
+    # # with open(os.path.join(args.output, f"args.json"), "w") as f:
+    # #     json.dump(vars(args), f, indent=4)
 
-    # Save the arguments to a CSV file
-    with open(os.path.join(args.output, "args.csv"), "a") as f:
-        writer = csv.writer(f)
-        writer.writerow(vars(args).keys())
-        writer.writerow(vars(args).values())
+    # # # Save the arguments to a CSV file
+    # # with open(os.path.join(args.output, "args.csv"), "a") as f:
+    # #     writer = csv.writer(f)
+    # #     writer.writerow(vars(args).keys())
+    # #     writer.writerow(vars(args).values())
 
-    # Save the arguments to a TXT file
-    with open(os.path.join(args.output, "args.txt"), "a") as f:
-        f.write(str(vars(args)) + "\n")
+    # # # Save the arguments to a TXT file
+    # # with open(os.path.join(args.output, "args.txt"), "a") as f:
+    # #     f.write(str(vars(args)) + "\n")
 
-    # Save the arguments to a YAML file
-    with open(os.path.join(args.output, f"args.yaml"), "w") as f:
-        yaml.dump(vars(args), f)
+    # # # Save the arguments to a YAML file
+    # # with open(os.path.join(args.output, f"args.yaml"), "w") as f:
+    # #     yaml.dump(vars(args), f)
 
     # Use the provided model path if available, otherwise use the default path
     model_path = args.model if args.model else "./stable-diffusion/sd-v1-5.safetensors"
@@ -255,12 +250,12 @@ def main():
     generator = StableDiffusionGenerator(model_path)
 
     # If an image is provided, load it and use it as the initial image for Stable Diffusion
-    if yaml_args.image:
+    if yaml_args.image is not None:
         init_image = Image.open(yaml_args.image)
-        #if init_image is None:
-        #    print(f"Error: Failed to open image file {yaml_args.image}")
-        #else:
-        #    init_image = init_image.resize((yaml_args.width, yaml_args.height))
+        if init_image is None:
+            print(f"Error: Failed to open image file {yaml_args.image}")
+        else:
+            init_image = init_image.resize((args.width, args.height))
         # Set the initial image for Stable Diffusion
         generator.set_initial_image(init_image)
 
@@ -294,6 +289,8 @@ def main():
         print(f"Model: {model_path}")
         # Print the prompt for each generated image
         print(f"Prompt: {args.prompt}")
+        # Print the initial image for each generated image
+        print(f"Image: {args.image}")
         # Print the number of denoising steps for each generated image
         print(f"Steps: {args.num_inference_steps}")
         # Print the guidance scale for each generated image
