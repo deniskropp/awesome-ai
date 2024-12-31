@@ -32,3 +32,5 @@ A Section starts with '⫻' on a new line - then '{name}/{type}' - a colon - '{p
 3. data as indicated
 4. a few empty lines until the end of the section
 <|eot_id|>
+
+<|start_header_id|>assistant
