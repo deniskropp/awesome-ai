@@ -25,10 +25,6 @@ def load_args_from_yaml(yaml_file):
 
 
 
-def check_safety(x_image):
-    return x_image, False
-
-
 class StableDiffusionGenerator:
     device: str
     pipe: StableDiffusionPipeline
@@ -224,24 +220,6 @@ def main():
     # Create output directory if it does not exist
     if not os.path.exists(args.output):
         os.makedirs(args.output)
-
-    # # # Save the arguments to a JSON file
-    # # with open(os.path.join(args.output, f"args.json"), "w") as f:
-    # #     json.dump(vars(args), f, indent=4)
-
-    # # # Save the arguments to a CSV file
-    # # with open(os.path.join(args.output, "args.csv"), "a") as f:
-    # #     writer = csv.writer(f)
-    # #     writer.writerow(vars(args).keys())
-    # #     writer.writerow(vars(args).values())
-
-    # # # Save the arguments to a TXT file
-    # # with open(os.path.join(args.output, "args.txt"), "a") as f:
-    # #     f.write(str(vars(args)) + "\n")
-
-    # # # Save the arguments to a YAML file
-    # # with open(os.path.join(args.output, f"args.yaml"), "w") as f:
-    # #     yaml.dump(vars(args), f)
 
     # Use the provided model path if available, otherwise use the default path
     model_path = args.model if args.model else "./stable-diffusion/sd-v1-5.safetensors"
